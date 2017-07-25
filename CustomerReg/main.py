@@ -3,14 +3,21 @@ from appium import webdriver
 from appium.webdriver.common.touch_action import TouchAction
 from CustomerReg.PO.base_page import BasePage
 import  time
+import ConfigParser
+import os
 
+#通过脚本当前路径拼接其他文件的路径函数
+PATH= lambda p:os.path.abspath(os.path.join(os.path.dirname(__file__),p))
+#读取配置文件中app的信息，并赋值
+cf=ConfigParser.ConfigParser()
+cf.read('Reg_Config')
 desired_caps = {}
-desired_caps['platformName'] = 'Android'
-desired_caps['platformVersion'] = '6.0.0'
-desired_caps['deviceName'] = '127。0.0.1:62001'
-desired_caps['appPackage'] = 'com.quarkfinance.ufo'
-desired_caps['appActivity'] = 'com.quarkfinance.ufo.ui.StartActivity'
-desired_caps['app'] = "D:\Application\UFO_apk\ufo.apk"
+desired_caps['platformName'] = cf.get('AppInf','platformName')
+desired_caps['platformVersion'] = cf.get('AppInf','platformVersion')
+desired_caps['deviceName'] = cf.get('AppInf','deviceName')
+desired_caps['appPackage'] = cf.get('AppInf','appPackage')
+desired_caps['appActivity'] = cf.get('AppInf','appActivity')
+desired_caps['app'] = PATH(cf.get('AppInf','app'))
 
 driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
 time.sleep(3)

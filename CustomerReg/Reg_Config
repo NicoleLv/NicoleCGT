@@ -1,0 +1,10 @@
+[TestData]
+DataFile_Path=TestData\AccountReg.xlsx
+
+[AppInf]
+platformName=Android
+platformVersion=6.0.0
+appPackage=com.quarkfinance.ufo
+deviceName=127.0.0.1:62001
+appActivity=com.quarkfinance.ufo.ui.StartActivity
+app=UFO_apk\ufo.apk
