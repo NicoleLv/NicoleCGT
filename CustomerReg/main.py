@@ -5,6 +5,8 @@ from CustomerReg.PO.base_page import BasePage
 import  time
 import ConfigParser
 import os
+from Basic_oper.Excel_oper import Excel_file
+
 
 #通过脚本当前路径拼接其他文件的路径函数
 PATH= lambda p:os.path.abspath(os.path.join(os.path.dirname(__file__),p))
@@ -39,4 +41,15 @@ TouchAction(driver).press(x=x_l, y=y_l).wait(200).release().perform()
 #在首页点击 我的，进入登录页面，点击注册，进入注册页面
 driver.find_element_by_id('profile_card').click()
 driver.find_element_by_id('tv_register').click()
+
+#从外部excel文档读取待注册数据
+RegFile=cf.get('TestData','DataFile_Path')
+RegSheetName=cf.get('TestData','SheetName')
+AccountToReg=Excel_file()
+rows=(AccountToReg.Get_FileInf(RegFile,RegSheetName))[0]
+cols=(AccountToReg.Get_FileInf(RegFile,RegSheetName))[1]
+
+#获取客户类型，调用不同的方法注册
+for i in range(rows-1):
+
 
