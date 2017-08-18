@@ -6,6 +6,7 @@ import  time
 import ConfigParser
 import os
 from Basic_oper.Excel_oper import Excel_file
+import openpyxl
 
 
 #通过脚本当前路径拼接其他文件的路径函数
@@ -42,14 +43,26 @@ TouchAction(driver).press(x=x_l, y=y_l).wait(200).release().perform()
 driver.find_element_by_id('profile_card').click()
 driver.find_element_by_id('tv_register').click()
 
-#从外部excel文档读取待注册数据
+#从外部excel文档读取待注册数据的条数
 RegFile=cf.get('TestData','DataFile_Path')
 RegSheetName=cf.get('TestData','SheetName')
 AccountToReg=Excel_file()
 rows=(AccountToReg.Get_FileInf(RegFile,RegSheetName))[0]
 cols=(AccountToReg.Get_FileInf(RegFile,RegSheetName))[1]
 
-#获取客户类型，调用不同的方法注册
-for i in range(rows-1):
+#获取bankcode,districtcode和后面存放注册完成的账号信息文件存放目录用于后续生成随机的卡号和身份证号
+BankCode_path=PATH(cf.get('TestFile','BankFile'))
+DistributeCode_path=PATH(cf.get('TestFile','DistributeFile'))
+OutPut_path=PATH(cf.get('TestFile','OutPutFile'))
+
+# 获取客户类型,调用不同的方法注册
+# for i in range(rows-1):
+#     TestData_Table=AccountToReg.open_Excel(RegFile).sheet_by_name(RegSheetName)
+#     CusType=TestData_Table.cell(i+1,0).value
+#     PhoneNum=TestData_Table.cell(i+1,1).value
+#     PassWord=TestData_Table.cell(i+1,2).value
+#     if CusType=='新用户':
+
+
 
 

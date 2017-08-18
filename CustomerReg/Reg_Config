@@ -12,3 +12,8 @@ app=UFO_apk\ufo.apk
 
 [OutPut]
 OutPut_File=RegistedAccounts.xlsx
+
+[TestFile]
+BankFile=Test_Files\bankcode.xls
+DistributeFile=Test_Files\districtcode.txt
+OutPutFile=Test_Files\RegistedAccounts.xlsx
