@@ -18,8 +18,8 @@ class Customer(object):
         return CusEmail
 
     #随机生成银行卡号
-    def Gener_Bankno(self, BankCode_file):
-        f = xlrd.open_workbook(BankCode_file)
+    def Gener_Bankno(self, BankCode_filePath):
+        f = xlrd.open_workbook(BankCode_filePath)
         # shxrange = range(f.nsheets)
         try:
             sh = f.sheet_by_name("Sheet1")
@@ -74,10 +74,10 @@ class Customer(object):
 
 
     #随机生成身份证号
-    def Gener_IdentifyNum(self,DistrictcodeFile):
+    def Gener_IdentifyNum(self,DistrictcodeFile_Path):
         #将distributcode文档中的地区编号按省、市、区放入列表中
-        def Getdistrictcode(self, Districtcode):
-            with open(Districtcode) as file:
+        def Getdistrictcode(self, DistrictcodeFile_Path):
+            with open(DistrictcodeFile_Path) as file:
                 data = file.read()
                 districtlist = data.split('\n')
 
@@ -95,7 +95,7 @@ class Customer(object):
                     code = node[0:6]
                     codelist.append({"state": state, "city": city, "district": district, "code": code})
 
-        Getdistrictcode(self,DistrictcodeFile)
+        Getdistrictcode(self,DistrictcodeFile_Path)
         id = codelist[random.randint(0, len(codelist))]['code']  # 地区项
         id = id + str(random.randint(1980, 1995))  # 年份项
         da = datetime.date.today() + datetime.timedelta(days=random.randint(1, 366))  # 月份和日期项

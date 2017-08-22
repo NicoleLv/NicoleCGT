@@ -12,6 +12,7 @@ app=UFO_apk\ufo.apk
 
 [OutPut]
 OutPut_File=RegistedAccounts.xlsx
+Screenshot_path=Screenshot
 
 [TestFile]
 BankFile=Test_Files\bankcode.xls
