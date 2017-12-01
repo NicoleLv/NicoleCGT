@@ -23,6 +23,16 @@ class BasePage(object):
         x2 = int(PaseSize[0] * 0.1)
         self.driver.swipe(x1, y1, x2, y1, t)
 
+    #向上滑动页面
+    def swipeUp(self,t):
+        a =self.driver.get_window_size()['width']
+        b =self.driver.get_window_size()['height']
+        winSize = (x, y)
+        a1 = int(winSize[0] * 0.8)
+        b1 = int(winSize[1] * 0.9)
+        b2 = int(winSize[0] * 0.3)
+        self.driver.swipe(a1, b1, a1, b2, t)
+
     #截图
     def screenshot(self,path):
         timestamp = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))

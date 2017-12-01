@@ -36,8 +36,8 @@ class Customer(object):
         # print row_list
         # 随机选择其中一行
         slice = random.choice(row_list)
-        BankId = slice[0]
-        # print BankId
+        BankCode = slice[0] #第一列是银行编码
+        # print BankCode
 
         # 获取第二个元素和第三个元素，计算得出银行卡中间位数
         a1 = int(slice[1])
@@ -68,9 +68,9 @@ class Customer(object):
         # print sum2
         checknum = 10 - (sum1 + sum2) % 10
         # print checknum
-        BankNo = str_bank_front + str(checknum)
-        print BankNo, BankId
-        return (BankNo, BankId)
+        BankNum = str_bank_front + str(checknum)
+        print BankNum, BankCode
+        return (BankNum, BankCode)
 
 
     #随机生成身份证号
@@ -105,11 +105,11 @@ class Customer(object):
         i = 0
         count = 0
         weight = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]  # 权重项
-        checkcode = {'0': '1', '1': '0', '2': 'X', '3': '9', '4': '8', '5': '7', '6': '6', '7': '5', '8': '5', '9': '3',
+        checkcode = {'0': '1', '1': '0', '2': 'X', '3': '9', '4': '8', '5': '7', '6': '6', '7': '5', '8': '4', '9': '3',
                      '10': '2'}  # 校验码映射
         for i in range(len(id)):
             count = count + int(id[i:i + 1]) * weight[i]
-        id = id + checkcode[str(count % 11)]  # 算出校验码
+        id = id + checkcode[str(count % 11)]  # 算出校验码并拼接到id后
         return id
 
 
